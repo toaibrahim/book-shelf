@@ -1,5 +1,7 @@
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import { Link, useLoaderData, useParams } from 'react-router';
+import { addToStoredDB } from '../../Utility/addToDB';
 
 const BookDetails = () => {
     const {id} = useParams()
@@ -9,6 +11,27 @@ const BookDetails = () => {
     
     const {bookId,bookName,author,image,review,totalPages,rating,category,tags,publisher,yearOfPublishing} = singleBook
     
+    const handleMarkAsRead =(id)=>{
+        //store with id
+        //where to store
+        //array or collection
+        //if array already exist show an alert
+        //if array doesn't exist push in the collection of array
+        const MySwal = withReactContent(Swal)
+
+        MySwal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "This Book is Marked as Read!",
+            showConfirmButton: false,
+            timer: 1500
+          })
+
+
+        addToStoredDB(id)
+
+    }
+
     
     
     return (
@@ -74,7 +97,7 @@ const BookDetails = () => {
                     </div>
 
                   <div className='flex gap-4'>
-                    <button className="btn ">Mark as Read</button>
+                    <button onClick={()=>handleMarkAsRead(id)} className="btn ">Mark as Read</button>
                     <button className="btn bg-[#50B1C9] text-white">Add to Wishlist</button>
                     <Link to={`/bookDetails/${bookId+1}`}>
                         <button className="btn bg-[#50B1C9] text-white">Next</button>
