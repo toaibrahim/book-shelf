@@ -15,17 +15,17 @@ export const router = createBrowserRouter([
       {
         index:true,
         path:'/',
-        loader:()=>fetch('booksData.json'),
+        loader:()=>fetch('/booksData.json'),
         Component:Home
       },
       {
         path:'/listed-books',
-        loader:()=>fetch('booksData.json'),
+        loader:()=>fetch('/booksData.json'),
         Component:ListedBooks,
       },
       {
         path: '/bookDetails/:id',
-        loader:()=>fetch('booksData.json'),
+        loader:()=>fetch('/booksData.json'),
         Component:BookDetails,
       },
       {
